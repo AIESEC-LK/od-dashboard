@@ -108,7 +108,7 @@ module.exports = {
         }
 
         for (let i = 0; i < values.length; i++) {
-            const float_val = parseFloat(values[i][metrics_count[function_name]]);
+            const float_val = parseFloat(values[i][metrics_count[function_name] - 1 ]);
             if (isNaN(float_val)) data[entities[i]] = 0;
             else data[entities[i]] = float_val;
         }
