@@ -9,7 +9,7 @@ exports.getScores = functions.https.onRequest(async (request, response) => {
   if (month == null) {
     response.send("ERROR");
   }
-  const functions_list = ["Finance", "BD", "EwA", "IM+Mkt", "iGV", "oGV", "iGTa", "iGTe", "oGTa", "oGTe", "MXP", "PDI", "HDI", "ODI"];
+  const functions_list = ["Finance", "BD", "EwA & PR", "Product Marketing", "Brand MKT", "EM", "IM", "iGV", "oGV", "iGTa/iGTe", "oGTa/oGTe", "TM", "XDI", "HDI", "ODI"];
   let result = [];
   for (const function_name of functions_list) {
     result.push(await od_scores.add(function_name, month))

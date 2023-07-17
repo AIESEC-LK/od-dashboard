@@ -6,74 +6,78 @@ admin.initializeApp();
 const db = admin.firestore();
 
 const sheets_list = {
-    "Finance": "ODI",
-    "BD": "ODI",
-    "EwA": "ODI",
-    "IM+Mkt": "ODI",
-    "iGV": "ODI",
-    "oGV": "ODI",
-    "iGTa": "ODI",
-    "iGTe": "ODI",
-    "oGTa": "ODI",
-    "oGTe": "ODI",
-    "MXP": "ODI",
-    "PDI": "ODI",
-    "HDI": "ODI",
-    "ODI": "ODI"
+    "Finance": "ODI"	,
+    "BD"	: "ODI"	,
+    "EwA & PR"	: "ODI"	,
+    "Product Marketing"	: "ODI"	,
+    "Brand MKT"	: "ODI"	,
+    "EM"	: "ODI"	,
+    "IM"	: "ODI"	,
+    "iGV"	: "ODI"	,
+    "oGV"	: "ODI"	,
+    "iGTa/iGTe"	: "ODI"	,
+    "oGTa/oGTe"	: "ODI"	,
+    "TM"	: "ODI"	,
+    "XDI"	: "ODI"	,
+    "HDI"	: "ODI"	,
+    "ODI"	: "ODI"	
 }
 
 const columns = {
-    "Finance": ["K", "K"],
-    "BD": ["L", "L"],
-    "EwA": ["J", "J"],
-    "IM+Mkt": ["M", "M"],
-    "iGV": ["C", "C"],
-    "oGV": ["D", "D"],
-    "iGTa": ["H", "H"],
-    "iGTe": ["G", "G"],
-    "oGTa": ["E", "E"],
-    "oGTe": ["F", "F"],
-    "MXP": ["I", "I"],
-    "PDI": ["N", "N"],
-    "HDI": ["O", "O"],
-    "ODI": ["P", "P"]
+    "Finance"	        : ["C", "C"]	,
+    "BD"	            : ["D", "D"]	,
+    "EwA & PR"	        : ["E", "E"]	,
+    "Product Marketing"	: ["F", "F"]	,
+    "Brand MKT"	        : ["G", "G"]	,
+    "EM"	            : ["H", "H"]	,
+    "IM"	            : ["I", "I"]	,
+    "iGV"	            : ["J", "J"]	,
+    "oGV"	            : ["K", "K"]	,
+    "iGTa/iGTe"	        : ["L", "L"]	,
+    "oGTa/oGTe"	        : ["M", "M"]	,
+    "TM"	            : ["N", "N"]	,
+    "XDI"	            : ["O", "O"]	,
+    "HDI"	            : ["P", "P"]	,
+    "ODI"	            : ["Q", "Q"]
 }
 
 const metrics_count = {
-    "Finance": 1,
-    "BD": 1,
-    "EwA": 1,
-    "IM+Mkt": 1,
-    "iGV": 1,
-    "oGV": 1,
-    "iGTa": 1,
-    "iGTe": 1,
-    "oGTa": 1,
-    "oGTe": 1,
-    "MXP": 1,
-    "PDI": 1,
-    "HDI": 1,
-    "ODI": 1
+    "Finance"	: 1	,
+    "BD"	: 1	,
+    "EwA & PR"	: 1	,
+    "Product Marketing"	: 1	,
+    "Brand MKT"	: 1	,
+    "EM"	: 1	,
+    "IM"	: 1	,
+    "iGV"	: 1	,
+    "oGV"	: 1	,
+    "iGTa/iGTe"	: 1	,
+    "oGTa/oGTe"	: 1	,
+    "TM"	: 1	,
+    "XDI"	: 1	,
+    "HDI"	: 1	,
+    "ODI"	: 1	
 }
 
 const sort = {
-    "Finance": 8,
-    "BD": 9,
-    "EwA": 10,
-    "IM+Mkt": 10.5,
-    "iGV": 1,
-    "oGV": 2,
-    "iGTa": 3,
-    "iGTe": 5,
-    "oGTa": 4,
-    "oGTe": 6,
-    "MXP": 7,
-    "PDI": 10.75,
-    "HDI": 11,
-    "ODI": 12
+    "Finance"	:	6	,
+    "BD"	    :	7	,
+     "EwA & PR"	:	8	,
+    "Product Marketing"	:	9	,
+    "Brand MKT"	:	10	,
+    "EM"	    :	10.25	,
+    "IM"	    :	10.5	,
+    "iGV"	    :	1	,
+    "oGV"	    :	2	,
+    "iGTa/iGTe"	:	3	,
+    "oGTa/oGTe"	:	4	,
+    "TM"	    :	5	,
+    "XDI"	    :	10.75	,
+    "HDI"	    :	11	,
+    "ODI"	    :	12	
 }
 
-const entities = ["CC", "CN", "CS", "Kandy", "USJ", "Ruhuna", "SLIIT", "NSBM"]
+const entities = ["CC", "CN", "CS", "Kandy", "USJ", "Ruhuna", "SLIIT", "NSBM", "NIBM"]
 const month_names = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
@@ -89,7 +93,7 @@ module.exports = {
         });
 
         let results = await sheets.spreadsheets.values.get({
-            spreadsheetId: "1hxXP7QKBgUJkBgwVst9rUxSu-hKlPeeJl1kb8a7F9hY",
+            spreadsheetId: "12cMEAeC-uqEJZLkBLIGJwa2LV26N6taXBKF0wc9_lVk",
             range: range_name,
             auth: auth
         })
@@ -97,8 +101,8 @@ module.exports = {
         const values = results.data.values;
         console.log("Result:", values);
 
-        let year = 2022;
-        if (month >= 13) year = 2023;
+        let year = 2023;
+        if (month >= 13) year = 2024;
 
         let data = {
             function: function_name,
@@ -114,7 +118,7 @@ module.exports = {
         }
         console.log("Data:", data);
 
-        await db.collection('scores').doc(function_name + "-" + month_names[(month-1)%12] + "-2022").set(data);
+        await db.collection('scores').doc(function_name + "-" + month_names[(month-1)%12] + "-2023").set(data);
         return data;
     }
 }
