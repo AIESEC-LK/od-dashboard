@@ -1,6 +1,6 @@
 # OD Dashboard - Data Pipeline
 
-This project is designed to extract data from the OD Mastersheet and product data using the `aiesec-data` repository, load it into Firestore (Firebase), and then push the data to a BigQuery project. This allows for seamless data integration and analysis using BigQuery.
+###### Basically This project is designed to extract data from the OD Mastersheet and product data using the `aiesec-data` repository, load it into Firestore (Firebase), and then push the data to a BigQuery project. This allows for seamless data integration and analysis using BigQuery.
 
 ## Table of Contents
 
@@ -100,6 +100,45 @@ OD-Dashboard-Data-Pipeline/
    > Place your Firebase configuration in config/firestore_config.json.
    > Place your BigQuery configuration in config/bigquery_config.json.
 
-## 
+## Data Extraction
 
+Data extraction scripts are located in the data_extraction/ directory. These scripts are responsible for extracting data from the OD Mastersheet and product data using the aiesec-data repository.
 
+Example usage:
+```python
+   from data_extraction.extract_data import extract_od_mastersheet, extract_product_data
+   
+   od_data = extract_od_mastersheet()
+   product_data = extract_product_data()
+```
+
+## Loading Data into Firestore
+Scripts for loading data into Firestore are located in the firestore_loading/ directory.
+
+Example usage:
+```python
+   from firestore_loading.load_firestore import load_data_to_firestore
+   
+   load_data_to_firestore(od_data, 'od_mastersheet_collection')
+   load_data_to_firestore(product_data, 'product_data_collection')
+```
+
+## Pushing Data to BigQuery
+Scripts for pushing data to BigQuery are located in the bigquery_loading/ directory.
+
+Example usage:
+```python
+   from bigquery_loading.load_bigquery import push_data_to_bigquery
+   
+   push_data_to_bigquery('od_mastersheet_collection', 'bigquery_table_od')
+   push_data_to_bigquery('product_data_collection', 'bigquery_table_product')
+```
+
+## Running the Pipeline
+The entire pipeline can be run using the main.py script. This script coordinates the extraction, loading to Firestore, and pushing to BigQuery.4
+```python
+   python main.py
+```
+
+## Contribution & Conclusion
+We are still reviewing the documentation. Feel free to contribute to the project
